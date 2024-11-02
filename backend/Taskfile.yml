@@ -1,0 +1,8 @@
+version: 3
+
+tasks:
+  default:
+    desc: 使用可能なタスクを一覧表示
+    cmds:
+      - task --list --sort none
+    silent: true

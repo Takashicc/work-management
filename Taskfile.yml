@@ -1,0 +1,13 @@
+version: 3
+
+includes:
+  backend:
+    taskfile: ./backend/Taskfile.yml
+    dir: ./backend
+
+tasks:
+  default:
+    desc: 使用可能なタスクを一覧表示
+    cmds:
+      - task --list --sort none
+    silent: true
