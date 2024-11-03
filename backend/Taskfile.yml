@@ -1,5 +1,10 @@
 version: 3
 
+includes:
+  migration:
+    taskfile: ./migration/Taskfile.yml
+    dir: ./migration
+
 tasks:
   default:
     desc: 使用可能なタスクを一覧表示

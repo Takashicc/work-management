@@ -1,0 +1,44 @@
+version: 3
+
+vars:
+  ENV_FILE: ../.env
+  ENTITY_DIR: ../entity/src/
+
+tasks:
+  internal:
+    desc: マイグレーションツールを実行
+    dotenv:
+      - "{{.ENV_FILE}}"
+    cmds:
+      - cargo run -- {{.CLI_ARGS}}
+
+  generate:
+    desc: マイグレーションファイルを生成
+    requires:
+      vars:
+        - name
+    cmds:
+      - task: internal
+        vars:
+          CLI_ARGS: generate {{.name}} {{.CLI_ARGS}}
+
+  migrate:
+    desc: マイグレーションを実行
+    cmds:
+      - task: internal
+        vars:
+          CLI_ARGS: up {{.CLI_ARGS}}
+
+  refresh:
+    desc: マイグレーションをリフレッシュ
+    cmds:
+      - task: internal
+        vars:
+          CLI_ARGS: refresh {{.CLI_ARGS}}
+
+  generate-entity:
+    desc: エンティティを生成
+    dotenv:
+      - "{{.ENV_FILE}}"
+    cmds:
+      - sea-orm-cli generate entity -o {{.ENTITY_DIR}} --lib {{.CLI_ARGS}}
