@@ -1,9 +1,14 @@
+[workspace]
+members = [".", "entity", "migration"]
+
 [package]
 name = "backend"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+migration = { path = "migration" }
+entity = { path = "entity" }
 axum = "0.7.7"
 serde_json = "1.0.132"
 thiserror = "1.0.66"
@@ -11,3 +16,7 @@ tokio = { version = "1.41.0", features = ["full"] }
 tower-http = { version = "0.6.1", features = ["cors", "trace"] }
 tracing = "0.1.40"
 tracing-subscriber = "0.3.18"
+sea-orm = { version = "1.1.0", features = [
+    "sqlx-mysql",
+    "runtime-tokio-rustls",
+] }
