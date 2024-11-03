@@ -11,3 +11,9 @@ tasks:
     cmds:
       - task --list --sort none
     silent: true
+
+  up-db:
+    desc: データベースを起動
+    cmds:
+      - docker compose up -d mysql
+    silent: true
